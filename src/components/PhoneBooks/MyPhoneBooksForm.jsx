@@ -31,11 +31,10 @@ class MyPhoneBooksForm extends Component {
 
   
 
-  addPhoneBook = e => {
-    e.preventDefault();
+  addBook = ({name, number}) => {
 
     this.setState(prevState => {
-      const { contacts, name, number } = prevState;
+      const { contacts } = prevState;
       const newCont = { id: nanoid(), name: name, number: number };
 
       return { contacts: [newCont, ...contacts], name: '', number: '' };
@@ -57,7 +56,7 @@ return res;
     return (
       <>
       
-       <AddContactForm />
+       <AddContactForm  onSubmit={this.addBook}/>
        
         <label htmlFor="Search contact"></label>
         <input type="text" name="filter" onChange={this.handleEnterInput} />
