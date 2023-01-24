@@ -22,6 +22,13 @@ class MyPhoneBooksForm extends Component {
   };
 
   addBook = ({ name, number }) => {
+    const isName = Boolean(
+      this.state.contacts.find(e => name.toLowerCase() === e.name.toLowerCase())
+    );
+    if (isName) {
+      return alert(`${name} is contact book`);
+    }
+
     this.setState(prevState => {
       const { contacts } = prevState;
       const newCont = { id: nanoid(), name: name, number: number };
