@@ -2,8 +2,7 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 
 import AddContactForm from './Form/AddContactForm';
-
-// import style from './my-phonebooks-form.module.scss';
+import style from './my-phonebooks.module.scss';
 
 class MyPhoneBooksForm extends Component {
   static defaultProps = {};
@@ -11,20 +10,7 @@ class MyPhoneBooksForm extends Component {
   static propTypes = {};
 
   state = {
-    contacts: [
-      {
-        id: nanoid(),
-        name: 'vasay',
-        number: '445677',
-      },
-
-      {
-        id: nanoid(),
-        name: 'Taras',
-        number: '1234567',
-      },
-    ],
-
+    contacts: [],
     filter: '',
   };
 
@@ -61,21 +47,28 @@ class MyPhoneBooksForm extends Component {
 
   render() {
     const contactsFilter = this.findContact();
+    const isContact = Boolean(contactsFilter.length);
     return (
       <>
         <AddContactForm onSubmit={this.addBook} />
 
-        <label htmlFor="Search contact"></label>
-        <input type="text" name="filter" onChange={this.handleEnterInput} />
+        <div className={style.filter}>
+          <label className={style.label}>Search contact</label>
+          <input type="text" name="filter" onChange={this.handleEnterInput} />
+        </div>
 
-        <div>Contact</div>
-        <ol>
-          {contactsFilter.map(({ id, name, number }) => (
-            <li key={id}>
-              {name}: {number}
-            </li>
-          ))}
-        </ol>
+        {isContact && (
+          <div className={style.contact}>
+            <p>Contact</p>
+            <ol>
+              {contactsFilter.map(({ id, name, number }) => (
+                <li key={id}>
+                  {name}: {number}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </>
     );
   }

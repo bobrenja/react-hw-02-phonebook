@@ -1,4 +1,4 @@
-import MyPhoneBooksForm from "./PhoneBooks/MyPhoneBooksForm";
+import MyPhoneBooks from "./PhoneBooks/MyPhoneBooks";
 
 
 export const App = () => {
@@ -14,7 +14,7 @@ export const App = () => {
       // }}
     >
 
-<MyPhoneBooksForm/>
+<MyPhoneBooks/>
     </div>
   );
 };
