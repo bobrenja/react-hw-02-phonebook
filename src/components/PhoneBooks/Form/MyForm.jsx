@@ -2,7 +2,7 @@ import { Component } from 'react';
 import styles from './addContactForm.module.scss';
 import { nanoid } from 'nanoid';
 
-class AddContactForm extends Component {
+class MyForm extends Component {
   state = {
     name: '',
     number: '',
@@ -32,6 +32,7 @@ class AddContactForm extends Component {
     const { name, number } = this.state;
 
     return (
+      
       <form className={styles.form} onSubmit={this.handleSubmit}>
         <label className={styles.label} htmlFor={this.nameId}>
           Name
@@ -68,4 +69,4 @@ class AddContactForm extends Component {
   }
 }
 
-export default AddContactForm;
+export default MyForm;

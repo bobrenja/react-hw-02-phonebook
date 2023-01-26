@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-import AddContactForm from './Form/AddContactForm';
+import MyForm from './Form/MyForm';
 import style from './my-phonebooks.module.scss';
+import Contacts from './Contacts/Contacts';
 
 class MyPhoneBooksForm extends Component {
   static defaultProps = {};
@@ -52,12 +53,20 @@ class MyPhoneBooksForm extends Component {
     return res;
   }
 
+  deleteContact = id => {
+    const { contacts } = this.state;
+    const newContact = contacts.filter(e => e.id !== id);
+    this.setState({ contacts: newContact });
+  };
+
   render() {
     const contactsFilter = this.findContact();
     const isContact = Boolean(contactsFilter.length);
     return (
       <>
-        <AddContactForm onSubmit={this.addBook} />
+        <h1>Phonebook</h1>
+
+        <MyForm onSubmit={this.addBook} />
 
         <div className={style.filter}>
           <label className={style.label}>Search contact</label>
@@ -65,16 +74,10 @@ class MyPhoneBooksForm extends Component {
         </div>
 
         {isContact && (
-          <div className={style.contact}>
-            <p>Contact</p>
-            <ol>
-              {contactsFilter.map(({ id, name, number }) => (
-                <li key={id}>
-                  {name}: {number}
-                </li>
-              ))}
-            </ol>
-          </div>
+          <Contacts
+            contactsFilter={contactsFilter}
+            deleteContact={this.deleteContact}
+          />
         )}
       </>
     );
