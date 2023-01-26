@@ -32,7 +32,6 @@ class MyForm extends Component {
     const { name, number } = this.state;
 
     return (
-      
       <form className={styles.form} onSubmit={this.handleSubmit}>
         <label className={styles.label} htmlFor={this.nameId}>
           Name
@@ -43,6 +42,7 @@ class MyForm extends Component {
           onChange={this.handleEnterInput}
           type="text"
           name="name"
+          placeholder="Name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
@@ -51,6 +51,7 @@ class MyForm extends Component {
           Contact
         </label>
         <input
+          placeholder="Number tel"
           id={this.contactId}
           value={number}
           onChange={this.handleEnterInput}
