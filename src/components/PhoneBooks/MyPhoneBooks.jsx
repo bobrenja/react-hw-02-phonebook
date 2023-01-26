@@ -6,14 +6,31 @@ import Contacts from './Contacts/Contacts';
 import Search from './Search/Search';
 
 class MyPhoneBooksForm extends Component {
-  static defaultProps = {};
 
+  static defaultProps = {};
   static propTypes = {};
 
   state = {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contactPhone'));
+    console.log(contacts);
+    if (contacts && contacts.length) {
+      //contacts?.length
+      this.setState({ contacts });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+
+    if (prevState.contacts.length !== contacts) {
+      localStorage.setItem('contactPhone', JSON.stringify(contacts));
+    }
+  }
 
   handleEnterInput = ({ target }) => {
     const { name, value } = target;

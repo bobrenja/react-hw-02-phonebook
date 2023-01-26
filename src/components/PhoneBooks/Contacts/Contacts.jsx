@@ -8,7 +8,7 @@ const Contacts = props => {
         {props.contactsFilter.map(({ id, name, number }) => (
           <li key={id} className={style.list}>
             <span>
-              {name}: {number}
+              <b>{name}</b>: {number}
             </span>
 
             <button
