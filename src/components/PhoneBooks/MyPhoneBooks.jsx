@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 
 import MyForm from './Form/MyForm';
-import style from './my-phonebooks.module.scss';
 import Contacts from './Contacts/Contacts';
+import Search from './Search/Search';
 
 class MyPhoneBooksForm extends Component {
   static defaultProps = {};
@@ -49,7 +49,6 @@ class MyPhoneBooksForm extends Component {
         name.toLowerCase().includes(normalaiseLow) ||
         number.includes(normalaiseLow)
     );
-    // console.log(res)
     return res;
   }
 
@@ -65,14 +64,8 @@ class MyPhoneBooksForm extends Component {
     return (
       <>
         <h1>Phonebook</h1>
-
         <MyForm onSubmit={this.addBook} />
-
-        <div className={style.filter}>
-          <label className={style.label}>Search contact</label>
-          <input type="text" name="filter" onChange={this.handleEnterInput} />
-        </div>
-
+        <Search handleEnterInput={this.handleEnterInput} />
         {isContact && (
           <Contacts
             contactsFilter={contactsFilter}
